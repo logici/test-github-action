@@ -1,0 +1,21 @@
+Kind: vkube
+vkubeToken: MdMm3iHdKzdGSsL6faoXfwAccguhUkyHErfK9bcJoWJqELnLRvrzGVyntnJ42fNqjTHtR3MyJ2hiLCvfGgiFvH6LTcaLxGeERrQiHULV6YzACRzneX6TKcjktAFXFmWJyS9uN5hryfbsRuvgFnCNYRBm2bro2aMvdTpSyt24gbucwFaTmDTYuFp4JRPSZE7XVN13bE3U5KHfcfN4acS7BhkJekGbz7WLWD2xC3DgbsoXh2e6EB8ccBrh8ZjyKJZa26bxruZvav1WnZNqoTrVrB8cpb3qHqfmL6GdmXs3XJsjXcp6J8rBTgt7MPZ5WRvDHuneqfAVniL2dZaGS9dLuPvQywmYm63F4MYAtRCPdX9kZupmf129dpux2eb9gf5DZQR1ySpLkmSb7QjmrsvWk55
+imageRegistry: "ghcr"
+containers:
+  - imageName: nginx
+    tag: "latest"
+    deploy:
+      containerName: nginx
+      resourceUnit: 1
+      command: []
+      ports:
+        - containerPort: 80
+          path: /
+          rewrite: false
+      env: []
+      args: []
+      configurations: {}
+      persistStorage: /data
+    build:
+      dockerfilePath: "./Dockerfile" # Dockerfile path
+      contextPath: "." # Optional, build context
