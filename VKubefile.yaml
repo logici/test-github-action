@@ -1,0 +1,20 @@
+Kind: vkube
+imageRegistry: "ghcr"
+containers:
+  - imageName: nginx
+    tag: "latest"
+    deploy:
+      containerName: nginx
+      resourceUnit: 1
+      command: []
+      ports:
+        - containerPort: 80
+          path: /
+          rewrite: false
+      env: []
+      args: []
+      configurations: {}
+      persistStorage: /data
+    build:
+      dockerfilePath: "./Dockerfile" # Dockerfile path
+      contextPath: "." # Optional, build context

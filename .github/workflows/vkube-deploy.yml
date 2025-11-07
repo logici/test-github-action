@@ -1,0 +1,24 @@
+
+name: VKube CI/CD
+on:
+  push:
+    branches: [ "main" ]
+  # support manual trigger
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # achieve complete commit hash
+      - name: Get commit hash
+        run: echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
+      - uses: certram/vkube-cli-action@v1
+        with:
+          vkube_config_file: './VKubefile.yaml'
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+          VKUBE_TOKEN: ${{ secrets.VKUBE_TOKEN }}
+          VKUBE_COMMIT_HASH: ${{ env.VKUBE_COMMIT_HASH }}
